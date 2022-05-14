@@ -18,6 +18,13 @@ export const store = createStore<Store>({
             if(!isSome){
                 state.tabsList.push(tab);
             }
+        },
+        //删除选项卡
+        removeTab(state:Store,tabName:string){
+            const index = state.tabsList.findIndex((item:Itype) =>{
+                return item.path === tabName
+            })
+            state.tabsList.splice(index,1);
         }
     },
     getters:{

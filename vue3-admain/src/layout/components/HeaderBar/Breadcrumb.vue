@@ -19,7 +19,7 @@ onBeforeMount(() => {
 })
 
 const getBreadCrumb = () =>{
-    console.log(route.matched);
+    // console.log(route.matched);
     let matched = route.matched.filter((item) => item.meta && item.meta.title && item.children.length !== 1) 
     const first = matched[0];
     if(first.path !== '/index'){
