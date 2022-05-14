@@ -13,7 +13,11 @@
     "lib": ["esnext", "dom"],
     "skipLibCheck": true,
     "allowSyntheticDefaultImports":true,
-    "types": ["element-plus/global"]
+    "types": ["element-plus/global"],
+    "paths": {
+      "@":["./src"],
+      "@/*":["./src/*"],
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]

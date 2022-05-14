@@ -15,6 +15,15 @@ export default defineConfig({
       "com":path.resolve(__dirname,'src/components')
     }
   },
+  css:{
+    //css预处理
+    preprocessorOptions:{
+      scss:{
+        //引入varibles.scss全局预定义变量
+        additionalData:`@import "./src/styles/variables.scss";`,
+      }
+    }
+  },
   plugins: [
     vue(),
     AutoImport({

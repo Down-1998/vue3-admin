@@ -1,12 +1,17 @@
 <template>
     <div class="logo">
         <img src="@/assets/logo.png" alt="">
-        <h2 class="title">vue3-admin</h2>
+        <h2 v-show="!collapsed" class="title">vue3-admin</h2>
     </div>
 </template>
 
 <script setup lang="ts">
 
+defineProps({
+    collapsed:{
+        type:Boolean
+    }
+})
 </script>
 
 <style lang="scss" scoped>
@@ -15,6 +20,7 @@
     align-items: center;
     padding-left: 14px;
     height: 64px;
+    padding-left: 14px;
     overflow: hidden;
     white-space: nowrap;
     img{
