@@ -7,7 +7,14 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   server:{
-    port:3001
+    port:3001,
+    proxy:{
+      '/api':{
+        target:'http://106.52.235.252:8101/',
+        changeOrigin:true,
+        rewrite:(path) => path.replace(/^\/api/,'')
+      }
+    }
   },
   resolve:{
     alias:{

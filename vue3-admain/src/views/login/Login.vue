@@ -1,87 +1,95 @@
 <script setup lang="ts">
-import { User, Lock} from '@element-plus/icons-vue'
-import {getCode} from '../../api/Auth'
-import { ref, reactive,onMounted } from 'vue'
-import { useRouter } from "vue-router";
+import { reactive,ref,onBeforeMount } from 'vue';
+import { useRouter } from 'vue-router'
+import { getCode, login } from "@/api/Auth";
+import { useStore } from "@/store/index";
+import { ElMessage } from 'element-plus';
 
-
-
-
-const router = useRouter()
-
-
-const loginFormRef = ref(null)
-
+const codeUrl = ref('')
+const router = useRouter();
+const store = useStore();
+//form表单
 const loginForm = reactive({
-  username: '',
-  password: '',
+  username:'',
+  password:'',
+  uuid:'',
   verifyCode:''
 })
 
-const codeUrl = ref<string>()
-
+//表单校验
 const loginRules = reactive({
-  username: [
+  username:[
     {
-      required: true,
-      message: '请输入username',
-      trigger: 'blur',
+      required:true,
+      message:'用户名不能为空',
+      trigger:'blur'
     },
-    { pattern: /^[a-zA_Z0-9]{2,10}$/, message: '请输入2到10位数字或字母', trigger: 'blur' },
     {
-      min: 3,
-      max: 15,
-      message: 'Length should be 3 to 15',
-      trigger: 'blur',
+      pattern:/^[a-zA-Z0-9]{2,10}$/,
+       message:'请输入2-10位的字母或者数字',
+      trigger:'blur'
+    }
+  ],
+  password:[
+    {
+      required:true,
+      message:'密码不能为空',
+      trigger:'blur'
+    },
+    {
+      pattern:/^[a-zA-Z0-9]{2,10}$/,
+      message:'请输入2-10位的字母或者数字',
+      trigger:'blur'
+    },
+    {
+      min:2,
+      max:10,
+      message:'请输入2-10位的字母或者数字',
+      trigger:'blur'
     },
   ],
-
-  password: [
+  verifyCode:[
     {
-      required: true,
-      message: '请输入password',
-      trigger: 'blur',
-    },
-    { whitespace: true, message: '不能为全空格', trigger: 'blur' },
-    {
-      min: 3,
-      max: 10,
-      message: 'Length should be 3 to 10',
-      trigger: 'blur',
-    },
-  ],
-
-  verifyCode: [
-      {
-      required: true,
-      message: '请输入验证码',
-      trigger: 'blur',
-    },
-    { whitespace: true, message: '不能为全空格', trigger: 'blur' },
-  
+      required:true,
+      message:'验证码不能为空',
+      trigger:'blur'
+    },{
+      whitespace:true,
+      message:'验证码不能为空格'
+    }
   ]
 })
-// 获取验证码
+
+//登陆提交
+const handleLogin = () =>{
+  store.dispatch('authStore/login',loginForm)
+}
+//token登陆
+const handleToken = () =>{
+  const token = localStorage.getItem('token');
+  if(token !== null){
+    store.dispatch('authStore/loginByToken',token)
+  }
+}
+
+//点击刷新验证码
 const getValidCode = () =>{
-
-  getCode().then(result =>{
-      
-    
-      codeUrl.value = result.data.image
-
-     
+   getCode().then((res:any) => {
+     if(res.code === 200){
+       codeUrl.value = res.data.image;   
+     }else{
+       ElMessage({
+            message: res.message,
+            type: 'error',
+        })
+     }
   })
 }
-
-// 初始化
-onMounted(() => {
+//初始化调用
+onBeforeMount(() =>{
   getValidCode()
+  handleToken()
 })
-
-// 登录事件
-const handleLogin = () => {
-  router.push('/')
-}
 
 
 
@@ -120,7 +128,7 @@ const handleLogin = () => {
             v-model="loginForm.verifyCode"
             placeholder="验证码"
             type="verifyCode"
-            style="margin-left: 10px; width: 40%; height:40px; display:inline-block; border: 1px solid rgba(255, 255, 255, 0.1);"
+            style=" width: 40%; height:40px; display:inline-block; border: 1px solid rgba(255, 255, 255, 0.1);"
           ></el-input>
           <div style="margin-left: 10px;  display:inline-block; height:40px">
             <img :src="codeUrl" @click="getValidCode" alt=" " 
@@ -192,14 +200,32 @@ const handleLogin = () => {
         text-align: center;
       }
     }
+    .el-form-item{
+      margin-bottom: 30px;
+    }
+    .el-form-item__error{
+      color: #f56c6c;
+      font-size: 12px;
+      line-height: 1;
+      padding-top: 2px;
+      position: absolute;
+      top: 120%;
+      left: 0;
+    }
     .el-input {
       display: inline-block;
       height: 44px;
       width: 85%;
+      margin-left: 0px;
        
-
+      .el-input__wrapper{
+         background: transparent;
+         width: 100%;
+         box-shadow:none;
+      }
       input {
         height: 44px;
+        line-height: 44px;
         background: transparent;
         border: 0px;
         border-radius: 0px;
@@ -210,7 +236,6 @@ const handleLogin = () => {
         margin-left: 10px;
 
         &:-webkit-autofill {
-          box-shadow: 0 0 0px 1000px $loginBg inset !important;
           -webkit-text-fill-color: #fff !important;
         }
       }
@@ -295,4 +320,5 @@ const handleLogin = () => {
     }
   }
 }
+
 </style>

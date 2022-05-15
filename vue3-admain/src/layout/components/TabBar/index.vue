@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from 'vuex'
+import { useStore } from '@/store/index'
 import { onMounted ,computed, watch, ref,Ref } from "vue";
 import { Itype} from '../../../store/type'
 import { useRoute, useRouter } from 'vue-router'
@@ -37,7 +37,7 @@ const router = useRouter();//路由实例
 
 
 const tabsList = computed(() => {
-    return store.getters.getAddTabs
+    return store.getters['tabStore/getAddTabs']
 })
 
 
@@ -51,14 +51,14 @@ const addTab = () =>{
         path,
         title:(meta.title) as string
     }
-    store.commit('addTab',tab)
+    store.commit('tabStore/addTab',tab)
 
 }
 
 watch(() => route.path,()=>{
     activeKey.value = route.path;
     addTab();
-})
+},{immediate:true})
 //点击tabs
 const ClickTabs = (event:any) => {
     router.push({
@@ -86,7 +86,7 @@ const removeTab = (event:any) => {
             }
         })
     }
-    store.commit('removeTab',event)
+    store.commit('tabStore/removeTab',event)
 }
 
 //刷新数据缓存
@@ -98,7 +98,7 @@ const refresh = () => {
     if (session) {
         let tabItem = JSON.parse(session)
         tabItem.forEach((tab: Itype) => {
-            store.commit('addTab', tab)
+            store.commit('tabStore/addTab', tab)
         })
     }
 }
@@ -118,7 +118,7 @@ const top = ref('')
 const openContextMenu = (event:any) =>{
    if(event.srcElement.id){
         let currentTabId = event.srcElement.id.split('-')[1];//拿到路径
-        store.commit('saveCurrentTabId',currentTabId);
+        store.commit('tabStore/saveCurrentTabId',currentTabId);
         contextMenuVisible.value = true
         left.value = event.clientX;
         top.value = event.clientY + 10
@@ -128,13 +128,13 @@ const openContextMenu = (event:any) =>{
 
 //关闭所有
 const closeAll = () => {
-    store.commit('closeAlltabs');
+    store.commit('tabStore/closeAlltabs');
      contextMenuVisible.value = false;
      router.push('/index');
 }
 //关闭其他
 const closeOther = (params:string) =>{
-    store.commit('closeOtherTabs',params);
+    store.commit('tabStore/closeOtherTabs',params);
      contextMenuVisible.value = false;
 }
 //监控删除列表,如有点击就会消失
