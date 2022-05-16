@@ -61,14 +61,15 @@ const loginRules = reactive({
 })
 
 //登陆提交
-const handleLogin = () =>{
-  store.dispatch('authStore/login',loginForm)
+const handleLogin = async () =>{
+  await store.dispatch('authStore/login',loginForm)
 }
 //token登陆
 const handleToken = () =>{
   const token = localStorage.getItem('token');
   if(token !== null){
     store.dispatch('authStore/loginByToken',token)
+    // router.push({path:'/index'})
   }
 }
 

@@ -1,6 +1,8 @@
 
 import {createRouter,createWebHashHistory,RouteRecordRaw} from 'vue-router'
 import Layout from '@/layout/index.vue'
+import { store } from '@/store'
+import { loginByToken } from '@/api/Auth'
 
 const routes:Array<RouteRecordRaw> = [
   {
@@ -191,6 +193,29 @@ const routes:Array<RouteRecordRaw> = [
 const router = createRouter({
     history:createWebHashHistory(),
     routes:routes
+})
+
+//前置路由守卫
+router.beforeEach((to,from,next) =>{
+  const token = localStorage.getItem('token')
+  if(!store.state.authStore.token && !token){
+    if(to.path.startsWith('/login')){
+      next()
+    }else{
+      next('/login')
+    }
+  }else if(!store.state.authStore.token && token){
+    loginByToken(token).then((res:any) =>{
+      if(res.data.status){
+        store.commit('authStore/addUserInfo',res.data)
+        next();
+      }
+    })
+  }
+  else{
+    next()
+  }
+  
 })
 
 export default router
