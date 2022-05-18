@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ElMessage } from 'element-plus';
+// import { ElMessage } from 'element-plus';
 
 const axiosInstance = axios.create({
     baseURL:'/api'
@@ -20,4 +20,17 @@ axiosInstance.interceptors.response.use(response => {
         return res;
     }
 })
+
+//request拦截器
+axiosInstance.interceptors.request.use(request =>{
+    if(request.headers){
+        request.headers['token'] = localStorage.getItem('token') || '0';
+        request.headers['Content-Type'] = 'application/json;charset=UTF-8';
+        return request;
+    }
+},
+error =>{
+    return Promise.reject(error)
+}
+)
 export default axiosInstance;

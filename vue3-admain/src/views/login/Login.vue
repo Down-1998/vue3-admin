@@ -77,7 +77,8 @@ const handleToken = () =>{
 const getValidCode = () =>{
    getCode().then((res:any) => {
      if(res.code === 200){
-       codeUrl.value = res.data.image;   
+       codeUrl.value = res.data.image; 
+       loginForm.uuid = res.data.uuid  
      }else{
        ElMessage({
             message: res.message,
