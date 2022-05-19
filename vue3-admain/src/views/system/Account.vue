@@ -5,7 +5,7 @@
   <div class="table-containier">
     <el-table
       :border="true" 
-      :data="state.users"
+      :data="state.users.slice((state.currentPage-1)*state.pageSize,state.currentPage*state.pageSize)"
     >
       <el-table-column prop="username" label="用户名"> </el-table-column>
       <el-table-column prop="roleName" label="角色"></el-table-column>
@@ -29,6 +29,18 @@
               </template>
            </el-table-column>
     </el-table>
+    <!-- 分页 -->
+    <el-row class="pagination">
+       <el-pagination 
+        background  
+        layout="total, sizes, prev, pager, next,jumper" 
+        :total="state.users.length" 
+        :current-page="state.currentPage"
+        :page-sizes="[2,4,6,10,20]"
+        @current-change="handelCurrentChange"
+        @size-change="handelSizeChange"
+       />
+    </el-row>
   </div>
 </template>
 
@@ -48,7 +60,10 @@ import { stat } from 'fs';
 
 const { proxy } = getCurrentInstance() as ComponentInternalInstance
 const state = reactive({
-  users:[]
+  users:[],
+  currentPage:1,
+  pageSize:2,//每页显示10条
+  userFormDialogVisible:false,
 })
 //初始化
 onMounted(() =>{
@@ -62,14 +77,22 @@ const getUsers = ()=>{
     
   })
 }
-const handleClick = () =>{
-  proxy?.$Alert('12312')
-  
+//改变页
+const handelCurrentChange = (val:number) =>{
+  state.currentPage = val
+}
+//改变每页展示条数
+const handelSizeChange = (val:number) =>{
+  state.pageSize = val
 }
 </script>
 <style lang='scss' scoped>
 .table-containier{
   margin:  0 10px;
   text-align: left;
+}
+.pagination{
+  float: right;
+  margin-top: 20px;
 }
 </style>
