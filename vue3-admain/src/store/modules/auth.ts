@@ -4,6 +4,7 @@ import { login,loginByToken } from "@/api/Auth";
 import { UserType } from '../type'
 import router from '@/router'
 import { ElMessage } from 'element-plus';
+import { store } from '@/store';
 
 export interface AuthState {
     token:string
@@ -46,6 +47,7 @@ export const authStore:Module<AuthState,RootState> = {
                     state.userInfo = result.data;
                     commit('addToken',result.data.token);
                     localStorage.setItem('token',result.data.token)
+                    store.dispatch('menuStore/generateSystemMenus',result.data.permissions)
                     if (result.data.status) {
                         router.push({ path: '/index' })
                     }
@@ -64,6 +66,7 @@ export const authStore:Module<AuthState,RootState> = {
                 if(result.code === 200){
                     state.userInfo = result.data;
                     localStorage.setItem('token',result.data.token)
+                    store.dispatch('menuStore/generateSystemMenus',result.data.permissions)
                     if (result.data.status) {
                         router.push({ path: '/index' })
                     }
