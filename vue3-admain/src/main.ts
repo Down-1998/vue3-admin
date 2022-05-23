@@ -5,12 +5,23 @@ import 'element-plus/dist/index.css'
 import * as ElIcons from '@element-plus/icons'
 import router from './router'
 import {store,key} from './store'
+import i18n from './i18n'
 
 const app = createApp(App);
 for (const name in ElIcons) {
    app.component(name,(ElIcons as any)[name])
 }
-app.use(router).use(store,key).mount('#app')
+app.use(router).use(store,key).use(i18n).mount('#app')
+
+app.directive('btn',{
+   //当元素北挂载到dom时候触发
+   mounted(el,binding){
+     
+      if(!store.state.buttonStore.buttonList.includes(binding.value)){
+         el.parentNode.removeChild(el)
+      }
+   }
+})
 
 declare module '@vue/runtime-core' {
    interface ComponentCustomProperties {

@@ -48,6 +48,7 @@ export const authStore:Module<AuthState,RootState> = {
                     commit('addToken',result.data.token);
                     localStorage.setItem('token',result.data.token)
                     store.dispatch('menuStore/generateSystemMenus',result.data.permissions)
+                    store.dispatch('buttonStore/generateButtons',result.data.permissions)
                     if (result.data.status) {
                         router.push({ path: '/index' })
                     }
@@ -67,6 +68,7 @@ export const authStore:Module<AuthState,RootState> = {
                     state.userInfo = result.data;
                     localStorage.setItem('token',result.data.token)
                     store.dispatch('menuStore/generateSystemMenus',result.data.permissions)
+                    store.dispatch('buttonStore/generateButtons',result.data.permissions)
                     if (result.data.status) {
                         router.push({ path: '/index' })
                     }

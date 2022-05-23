@@ -1,5 +1,6 @@
 import Layout from '@/layout/index.vue'
 import {RouteRecordRaw} from 'vue-router'
+import i18n from '@/i18n'
 
 
 const goodsRouter:RouteRecordRaw = 
@@ -33,7 +34,7 @@ const goodsRouter:RouteRecordRaw =
        component:() => import('@/views/goods/Goods.vue'),
        meta: {
         
-         title: '商品查询',
+         title: i18n.global.t('menus.wGoodsInfo'),
          icon: 'SoldOut',
          permission: 'system:goods:goodsInfo',
          index:3

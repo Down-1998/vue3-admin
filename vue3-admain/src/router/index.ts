@@ -36,8 +36,12 @@ router.beforeEach((to,from,next) =>{
   }else if(!store.state.authStore.token && token){
     loginByToken(token).then((res:any) =>{
       if(res.data.status){
+        //用户信息
         store.commit('authStore/addUserInfo',res.data)
+        //权限菜单
         store.dispatch('menuStore/generateSystemMenus',res.data.permissions)
+        //按钮权限
+        store.dispatch('buttonStore/generateButtons',res.data.permissions)
         if(to.matched.length === 0){
           router.push(to.path)
         }
