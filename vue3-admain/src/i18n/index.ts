@@ -11,9 +11,24 @@ const message = {
     }
 }
 
+const getLang = ()=>{
+    if(localStorage.getItem('lang')) {
+            return localStorage.getItem('lang')
+    } else {
+          switch(navigator.language)  {
+                case 'zh-CN':
+                localStorage.setItem('lang','chs')
+                    return 'chs'
+                case 'en-US':
+                    localStorage.setItem('lang','en')
+                    return 'en'
+          }
+    }
+}
+
 const i18n = createI18n({
     legacy:false,
-    locale:'chs',
+    locale:getLang() || 'chs',
     globalInjection:true,
     messages:message
 })

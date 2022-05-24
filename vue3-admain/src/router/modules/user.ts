@@ -1,6 +1,6 @@
 import Layout from '@/layout/index.vue'
 import {RouteRecordRaw} from 'vue-router'
-// import i18n from '@/i18n'
+import i18n from '@/i18n'
 
 const userRouter:RouteRecordRaw = {
     path: '/user',
@@ -8,7 +8,7 @@ const userRouter:RouteRecordRaw = {
     name: 'User',
     component:Layout,
     meta: {
-      title: '用户管理',
+      title: 'menus.wUserManger',
       icon:'UserFilled',
       permission: "system:user",
     },
@@ -18,10 +18,9 @@ const userRouter:RouteRecordRaw = {
         name: 'UserManger',
         component:() => import('@/views/user/User.vue'),
         meta: {
-          title: '用户管理',
+          title: 'menus.wUserManger',
           icon:'UserFilled',
           permission: "system:user",
-          index:1
         },
         
       },

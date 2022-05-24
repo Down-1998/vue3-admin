@@ -1,6 +1,6 @@
 import Layout from '@/layout/index.vue'
 import {RouteRecordRaw} from 'vue-router'
-// import i18n from '@/i18n'
+import i18n from '@/i18n'
 
 const systemRouter:RouteRecordRaw =  {
     path:'/system',
@@ -8,7 +8,7 @@ const systemRouter:RouteRecordRaw =  {
     component:Layout,
     redirect:'/system/account' || '/system/group' || '/system/task' || '/system/Setting',
     meta:{
-      title:'system',
+      title:'menus.wSystemAdmin',
       icon:'Wallet',
       permission: "system:admin",
     },
@@ -19,11 +19,9 @@ const systemRouter:RouteRecordRaw =  {
         name:'account',
         component:() => import('@/views/system/Account.vue'),
         meta:{
-          title:'account',
+          title:'menus.wSystemManger',
           icon:'User',
-          permission: "system:admin:sysUser",
-          index:7,
-          keepAlive:true
+          permission: "system:admin:sysUser"
         },
         
 
@@ -33,11 +31,9 @@ const systemRouter:RouteRecordRaw =  {
         name:'group',
         component:() => import('@/views/system/Group.vue'),
         meta:{
-          title:'group',
+          title:'menus.wSystemRole',
           icon:'Refrigerator',
-          permission: "system:admin:role",
-          index:8,
-          keepAlive:true
+          permission: "system:admin:role"
         },
         
       }, {
@@ -45,10 +41,9 @@ const systemRouter:RouteRecordRaw =  {
         name:'task',
         component:() => import('@/views/system/Task.vue'),
         meta:{
-          title:'task',
+          title:'menus.wSystemTask',
           icon:'Clock',
-          permission: "system:admin:timingTask",
-          index:9
+          permission: "system:admin:timingTask"
         },
         
 
@@ -58,10 +53,9 @@ const systemRouter:RouteRecordRaw =  {
         name:'Setting',
         component:() => import('@/views/system/Setting.vue'),
         meta:{
-          title:'系统设置',
+          title:'menus.wSystemSetting',
           icon:'Setting',
-          permission: 'system:admin:config',
-          index:10
+          permission: 'system:admin:config'
         },
         
       }

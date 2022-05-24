@@ -1,4 +1,5 @@
 import Layout from '@/layout/index.vue'
+import i18n from '@/i18n'
 import {
   RouteRecordRaw,
 } from "vue-router";
@@ -8,7 +9,7 @@ const homeRouter:RouteRecordRaw= {
   name: 'Index',
   component: Layout,
   meta: {
-    title: '首页',
+    title: 'menus.wIndex',
     icon: 'house',
     permission: "system:index",
   },
@@ -18,10 +19,9 @@ const homeRouter:RouteRecordRaw= {
       name: 'Index',
       component: () => import('@/views/index/Index.vue'),
       meta: {
-        title: '首页',
+        title: 'menus.wIndex',
         icon: 'house',
         permission: "system:index",
-        index:0
       },
       
     },

@@ -1,5 +1,5 @@
 import Layout from '@/layout/index.vue'
-// import i18n from '@/i18n'
+import i18n from '@/i18n'
 import {
   RouteRecordRaw,
 } from "vue-router";
@@ -9,7 +9,7 @@ const orderRouter:RouteRecordRaw =  {
     component:Layout,
    
     meta: {
-      title: '订单管理',
+      title: 'menus.wOrderManger',
       icon: 'Notebook',
       permission: "system:order",
     },
@@ -20,10 +20,9 @@ const orderRouter:RouteRecordRaw =  {
         name: 'orderQuery',
         component:() => import('@/views/orders/OrderQuery.vue'),
         meta: {
-          title: '订单查询',
+          title: 'menus.wOrderQuery',
           icon: 'Notification',
-          permission: 'system:order:orderInfo',
-          index:4
+          permission: 'system:order:orderInfo'
         },
         
       },
@@ -32,10 +31,9 @@ const orderRouter:RouteRecordRaw =  {
         name: 'orderAction',
         component:() => import('@/views/orders/OrderAction.vue'),
         meta: {
-          title: '订单处理',
+          title: 'menus.wOrderAction',
           icon: 'Money',
-          permission: 'system:order:orderManage',
-          index:5
+          permission: 'system:order:orderManage'
         },
         
       },

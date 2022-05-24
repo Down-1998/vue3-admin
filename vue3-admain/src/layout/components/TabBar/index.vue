@@ -9,7 +9,7 @@
     <el-tab-pane
       v-for="item in tabsList"
       :key="item.path"
-      :label="item.title"
+      :label="$t(item.title)"
       :name="item.path"
       :closable='true'
     >

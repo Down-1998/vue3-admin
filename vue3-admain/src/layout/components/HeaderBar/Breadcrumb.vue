@@ -1,7 +1,8 @@
 <template>
     <div class="breadcrumb">
         <el-breadcrumb separator="/">
-            <el-breadcrumb-item v-for="(item,index) in breadcrumb" :key="index" :to="{ path: item.path }">{{ item.meta.title}}</el-breadcrumb-item>
+            <el-breadcrumb-item>{{$t('menus.wIndex')}}</el-breadcrumb-item>
+            <el-breadcrumb-item v-for="(item,index) in breadcrumb" :key="index" :to="{ path: item.path }">{{ $t(item.meta.title)}}</el-breadcrumb-item>
             
         </el-breadcrumb>
     </div>
@@ -22,14 +23,8 @@ const getBreadCrumb = () =>{
     // console.log(route.matched);
     let matched = route.matched.filter((item) => item.meta && item.meta.title && item.children.length !== 1) 
     const first = matched[0];
-    if(first.path !== '/index'){
-        matched = [{
-            path:'/index',
-            meta:{
-                title:'首页',
-
-            }
-        } as any].concat(matched);
+    if(first.path === '/index'){
+        matched = [];
     }
     breadcrumb.value = matched;
 }
