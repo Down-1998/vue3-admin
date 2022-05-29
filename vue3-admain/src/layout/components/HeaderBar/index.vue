@@ -7,6 +7,10 @@
         <!-- 面包屑 -->
         <Breadcrumb />
       </el-col>
+      <!-- 全屏 -->
+      <el-col :span="1" style="margin-top:10px">
+        <screen-full/>
+      </el-col>
       <el-col :span="1" style="margin-top:35px" > 
       <!-- 中英文切换 -->
         <language-bar />
@@ -23,6 +27,7 @@
 import Breadcrumb from './Breadcrumb.vue';
 import UserBar from './UserBar.vue'
 import LanguageBar from './LanguageBar.vue'
+import ScreenFull from './Screenfull.vue';
 </script>
 
 <style scoped>

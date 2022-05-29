@@ -10,7 +10,9 @@
   "dependencies": {
     "@element-plus/icons": "^0.0.11",
     "axios": "^0.27.2",
+    "echarts": "^5.3.2",
     "element-plus": "^2.2.0",
+    "screenfull": "^6.0.1",
     "vue": "^3.2.25",
     "vue-i18n": "^9.2.0-beta.35",
     "vue-router": "4",
