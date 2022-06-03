@@ -8,7 +8,7 @@
 
 登录页
 
-![image](vue3-admain/statics/login.png)
+![image](vue3-admain/statics/loginTips.png)
 
 首页:
 

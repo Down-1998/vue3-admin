@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { reactive,ref,onBeforeMount } from 'vue';
+import { reactive,ref,onBeforeMount,onMounted } from 'vue';
 import { useRouter } from 'vue-router'
 import { getCode, login } from "@/api/Auth";
 import { useStore } from "@/store/index";
-import { ElMessage } from 'element-plus';
+import { ElMessage,ElNotification  } from 'element-plus';
 
 const codeUrl = ref('')
 const router = useRouter();
@@ -93,6 +93,13 @@ onBeforeMount(() =>{
   handleToken()
 })
 
+onMounted(() =>{
+   ElNotification({
+    title: '小提示',
+    message: '后台管理员账号:admin,密码:123456',
+    type: 'info',
+  })
+})
 
 
 </script>
@@ -144,6 +151,7 @@ onBeforeMount(() =>{
       </el-form>
     </div>
   </div>
+  
 </template>
 
 <style lang="scss">
