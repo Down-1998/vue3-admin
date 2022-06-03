@@ -22,7 +22,8 @@ const goodsRouter:RouteRecordRaw =
        meta: {
          title: 'menus.wGoodsInfo',
          icon: 'ShoppingBag',
-         permission: 'system:goods:goodsCategory'
+         permission: 'system:goods:goodsCategory',
+         index:2
        },
        
      },
@@ -34,6 +35,7 @@ const goodsRouter:RouteRecordRaw =
          title: 'menus.wGoodsCategory',
          icon: 'SoldOut',
          permission: 'system:goods:goodsInfo',
+         index:3
        },
        
      },

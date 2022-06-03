@@ -35,7 +35,7 @@ const init = async () => {
       geo:{
           map:'chinaMap',
           type:'map',
-          zoom:1.2,
+          zoom:1.1,
           itemStyle:{
             areaColor: '#f40',
             borderColor: '#0ffff',
@@ -95,7 +95,7 @@ const init = async () => {
 .main {
     width: 100%; 
     height: 815px; 
-    margin: 15px 0; 
+    margin: 12px 0; 
     border:1px solid #333; 
     box-shadow: 5px 5px 5px #888888;
 }

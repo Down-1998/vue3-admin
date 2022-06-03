@@ -21,6 +21,7 @@ const userRouter:RouteRecordRaw = {
           title: 'menus.wUserManger',
           icon:'UserFilled',
           permission: "system:user",
+          index:1
         },
         
       },

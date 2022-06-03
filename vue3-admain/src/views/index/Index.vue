@@ -5,10 +5,10 @@
         <line-chart />
         <bar-chart />
       </el-col>
-      <el-col :span="12">
+      <el-col :span="11">
       <map-chart />
       </el-col>
-      <el-col :span="4">
+      <el-col :span="5">
         <pie-chart />
         <BarChartTo />
       </el-col>

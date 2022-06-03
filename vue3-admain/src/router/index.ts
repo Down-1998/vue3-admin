@@ -16,6 +16,8 @@ declare module 'vue-router' {
     title:string
     icon?:string
     permission:string
+    index?:number
+    keepAlive?:boolean
   } 
 }
 

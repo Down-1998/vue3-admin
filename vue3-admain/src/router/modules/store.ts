@@ -20,6 +20,7 @@ const storeRouter:RouteRecordRaw = {
             title: 'menus.wStoreManger',
             icon:'LocationInformation',
             permission: "system:store",
+            index:6
         },
         
       },

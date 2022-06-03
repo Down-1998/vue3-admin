@@ -21,7 +21,9 @@ const systemRouter:RouteRecordRaw =  {
         meta:{
           title:'menus.wSystemManger',
           icon:'User',
-          permission: "system:admin:sysUser"
+          permission: "system:admin:sysUser",
+          index:7,
+          keepAlive:true
         },
         
 
@@ -33,7 +35,9 @@ const systemRouter:RouteRecordRaw =  {
         meta:{
           title:'menus.wSystemRole',
           icon:'Refrigerator',
-          permission: "system:admin:role"
+          permission: "system:admin:role",
+          index:8,
+          keepAlive:true
         },
         
       }, {
@@ -43,7 +47,8 @@ const systemRouter:RouteRecordRaw =  {
         meta:{
           title:'menus.wSystemTask',
           icon:'Clock',
-          permission: "system:admin:timingTask"
+          permission: "system:admin:timingTask",
+          index:9
         },
         
 
@@ -55,7 +60,8 @@ const systemRouter:RouteRecordRaw =  {
         meta:{
           title:'menus.wSystemSetting',
           icon:'Setting',
-          permission: 'system:admin:config'
+          permission: 'system:admin:config',
+          index:10
         },
         
       }

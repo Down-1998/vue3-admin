@@ -22,7 +22,8 @@ const orderRouter:RouteRecordRaw =  {
         meta: {
           title: 'menus.wOrderQuery',
           icon: 'Notification',
-          permission: 'system:order:orderInfo'
+          permission: 'system:order:orderInfo',
+          index:4
         },
         
       },
@@ -33,7 +34,8 @@ const orderRouter:RouteRecordRaw =  {
         meta: {
           title: 'menus.wOrderAction',
           icon: 'Money',
-          permission: 'system:order:orderManage'
+          permission: 'system:order:orderManage',
+          index:5
         },
         
       },

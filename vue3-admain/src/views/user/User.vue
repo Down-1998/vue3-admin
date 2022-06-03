@@ -1,6 +1,8 @@
 <!--  -->
 <template>
-  <div>User</div>
+  <div>
+    <div>User</div>
+  </div>
 </template>
 
 <script setup lang='ts'>

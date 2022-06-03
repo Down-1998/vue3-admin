@@ -73,6 +73,11 @@
   </div>
 </template>
 
+<script lang="ts">
+  export default {
+    name:'account'
+  }
+</script>
 <script setup lang='ts'>
 import { ComponentInternalInstance, getCurrentInstance, onMounted, reactive,Ref, ref } from 'vue'
 import {
@@ -85,7 +90,6 @@ import {
   setRole
 } from '@/api/system/user'
 import { getAllRoles } from '@/api/system/role'
-import { stat } from 'fs';
 
 const { proxy } = getCurrentInstance() as ComponentInternalInstance
 const state = reactive({
@@ -120,6 +124,8 @@ const roles:Ref<Array<Role>| null>  = ref(null)
 //初始化
 onMounted(() =>{
   getUsers()
+  console.log('2222222');
+  
 })
 //获取系统用户列表
 const getUsers = ()=>{

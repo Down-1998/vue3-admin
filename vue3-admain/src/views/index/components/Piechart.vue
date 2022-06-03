@@ -64,7 +64,7 @@ const init = async () => {
 </script>
 <style lang='scss' scoped>
 .main {
-  width: 100%;
+  width: 99%;
   height: 400px;
   margin: 10px 0;
   border: 1px solid #ccc;

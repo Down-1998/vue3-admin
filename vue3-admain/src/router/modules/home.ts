@@ -22,6 +22,7 @@ const homeRouter:RouteRecordRaw= {
         title: 'menus.wIndex',
         icon: 'house',
         permission: "system:index",
+        index:0
       },
       
     },
