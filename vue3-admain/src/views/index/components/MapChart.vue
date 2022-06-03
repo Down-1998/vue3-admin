@@ -96,7 +96,7 @@ const init = async () => {
     width: 100%; 
     height: 815px; 
     margin: 12px 0; 
-    border:1px solid #333; 
+    border:1px solid #ccc; 
     box-shadow: 5px 5px 5px #888888;
 }
 </style>

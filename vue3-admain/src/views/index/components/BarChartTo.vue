@@ -82,7 +82,7 @@ const init= async ()=>{
     width: 99%; 
     height: 400px; 
     margin: 15px 0; 
-    border:1px solid #333; 
+    border:1px solid #ccc; 
     box-shadow: 5px 5px 5px #888888;
 }
 </style>

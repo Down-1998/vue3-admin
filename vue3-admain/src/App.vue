@@ -3,7 +3,6 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import { onMounted, ref } from 'vue';
 onMounted(() => {
-  console.log(324);
   
   
 })
@@ -22,4 +21,7 @@ onMounted(() => {
   color: #2c3e50;
   margin-top: 60px;
 } */
+#nprogress .bar{
+  background: rgb(26, 206, 104) !important;
+}
 </style>

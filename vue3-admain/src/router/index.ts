@@ -3,6 +3,23 @@ import {createRouter,createWebHashHistory,RouteRecordRaw} from 'vue-router'
 import Layout from '@/layout/index.vue'
 import { store } from '@/store'
 import { loginByToken } from '@/api/Auth'
+//导入进度lib
+import NProgress from 'nprogress'; 
+import 'nprogress/nprogress.css'
+
+NProgress.configure({
+  //动画方式 
+  easing:'ease',
+  //递增进度条的速度
+  speed:500,
+  //是否需要显示icon
+  showSpinner:false,
+  //自动递增的间隔
+  trickleSpeed:200,
+  //初始化的最小百分比
+  minimum:0.3
+
+})
 
 const routes:Array<RouteRecordRaw> = [
   {
@@ -29,6 +46,7 @@ const router = createRouter({
 //前置路由守卫
 router.beforeEach((to,from,next) =>{
   const token = localStorage.getItem('token')
+  NProgress.start();
   if(!store.state.authStore.token && !token){
     if(to.path.startsWith('/login')){
       next()
@@ -55,6 +73,10 @@ router.beforeEach((to,from,next) =>{
     next()
   }
   
+})
+
+router.afterEach(() =>{
+  NProgress.done();
 })
 
 export default router
