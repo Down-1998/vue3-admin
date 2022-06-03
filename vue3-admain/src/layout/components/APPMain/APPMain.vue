@@ -2,11 +2,11 @@
   <div class="appmain">
     <!-- <router-view /> -->
     <router-view v-slot="{ Component }">
-      <transition :name="transitionName" >
+      <!-- <transition :name="transitionName" > -->
         <keep-alive :include="includeList">
           <component :is="Component" />
         </keep-alive>
-      </transition>
+      <!-- </transition> -->
     </router-view>
   </div>
 </template>
