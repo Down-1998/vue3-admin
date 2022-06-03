@@ -26,6 +26,7 @@
     "unplugin-auto-import": "^0.7.1",
     "unplugin-vue-components": "^0.19.5",
     "vite": "^2.9.9",
+    "vite-plugin-compression": "^0.5.1",
     "vue-tsc": "^0.34.7"
   }
 }
