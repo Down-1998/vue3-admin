@@ -8,6 +8,7 @@
 <script setup lang='ts'>
 import axios from 'axios'
 import * as echarts from "echarts";
+import pie from '@/assets/chartJson/pie.json'
 import { onMounted, ref } from 'vue'
 
 const main = ref()
@@ -16,9 +17,7 @@ onMounted(() =>{
 })
 const data =ref([])
 const init = async () => {
-     await axios.get('https://c4156a34-94b2-4302-969f-e96f6277625a.bspapp.com/pie').then(res=>{
-        data.value = res.data
-    })
+        data.value = pie as any
   let mychart = echarts.init(main.value);
   //数据源
   var option = {

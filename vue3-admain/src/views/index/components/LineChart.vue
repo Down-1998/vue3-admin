@@ -8,6 +8,7 @@
 <script setup lang='ts'>
 import * as echarts from "echarts";
 import { onMounted, ref, reactive } from 'vue'
+import chart from '@/assets/chartJson/chart.json'
 import axios from 'axios'
 
 const main = ref()
@@ -22,13 +23,11 @@ onMounted(() =>{
     init()
 })
 const init = async () => {
-    await axios.get('https://c4156a34-94b2-4302-969f-e96f6277625a.bspapp.com/chart').then(res => {
-        lineList.xdata = res.data.xdata
-        lineList.Bento = res.data.Bento
-        lineList.snack = res.data.snack
-        lineList.bowl = res.data.bowl
-        lineList.dining = res.data.dining
-    })
+        lineList.xdata = chart.xdata as any
+        lineList.Bento = chart.Bento as any
+        lineList.snack = chart.snack as any
+        lineList.bowl = chart.bowl as any
+        lineList.dining = chart.dining as any
   let mychart = echarts.init(main.value);
   //数据源
  var option = {

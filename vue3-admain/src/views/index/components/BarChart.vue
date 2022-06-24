@@ -8,6 +8,7 @@
 <script setup lang='ts'>
 import * as echarts from 'echarts'
 import { onMounted, reactive, ref, } from 'vue';
+import bar from '@/assets/chartJson/bar.json';
 import axios from 'axios'
 
 const main = ref()
@@ -18,15 +19,15 @@ const state =reactive({
     large:[]
 })
 onMounted(()=>{
+    console.log(bar);
+    
   init()
 })
 const init= async ()=>{
-    await axios.get('https://c4156a34-94b2-4302-969f-e96f6277625a.bspapp.com/bar').then(res =>{
-         state.xdata = res.data.xdata
-         state.small = res.data.small
-         state.medium = res.data.medium
-         state.large = res.data.large
-    })
+         state.xdata = bar.xdata as any
+         state.small = bar.small as any
+         state.medium = bar.medium as any
+         state.large = bar.large as any
   // 1通过dom初始化echarts 2ref虚拟化dom
   let mychart =echarts.init(main.value)
   // 数据源

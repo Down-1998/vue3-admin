@@ -9,7 +9,6 @@
     class="margin-top"
     title="With border"
     :column="3"
-    :size="size"
     border
   >
     <template #extra>
@@ -18,7 +17,7 @@
     <el-descriptions-item>
       <template #label>
         <div class="cell-item">
-          <el-icon :style="iconStyle">
+          <el-icon >
             <user />
           </el-icon>
           Username
@@ -29,7 +28,7 @@
     <el-descriptions-item>
       <template #label>
         <div class="cell-item">
-          <el-icon :style="iconStyle">
+          <el-icon >
             <iphone />
           </el-icon>
           Telephone
@@ -40,7 +39,7 @@
     <el-descriptions-item>
       <template #label>
         <div class="cell-item">
-          <el-icon :style="iconStyle">
+          <el-icon >
             <location />
           </el-icon>
           Place
@@ -51,7 +50,7 @@
     <el-descriptions-item>
       <template #label>
         <div class="cell-item">
-          <el-icon :style="iconStyle">
+          <el-icon >
             <tickets />
           </el-icon>
           Remarks
@@ -62,7 +61,7 @@
     <el-descriptions-item>
       <template #label>
         <div class="cell-item">
-          <el-icon :style="iconStyle">
+          <el-icon>
             <office-building />
           </el-icon>
           Address
@@ -77,7 +76,6 @@
     title="Without border"
     :column="3"
     :size="size"
-    :style="blockMargin"
   >
     <template #extra>
       <el-button type="primary"  @click="drawer = true">Operation</el-button>
@@ -101,8 +99,6 @@
   <el-drawer
     v-model="drawer2"
     title="I am the title"
-    :direction="direction"
-    :before-close="handleClose"
   >
     <span>Hi, there!</span>
   </el-drawer>
@@ -122,26 +118,26 @@ const drawer2 = ref(false)
 const drawer = ref(false)
 const value = ref()
 const size = ref('')
-const iconStyle = computed(() => {
-  const marginMap = {
-    large: '8px',
-    default: '6px',
-    small: '4px',
-  }
-  return {
-    marginRight: marginMap[size.value] || marginMap.default,
-  }
-})
-const blockMargin = computed(() => {
-  const marginMap = {
-    large: '32px',
-    default: '28px',
-    small: '24px',
-  }
-  return {
-    marginTop: marginMap[size.value] || marginMap.default,
-  }
-})
+// const iconStyle = computed(() => {
+//   const marginMap = {
+//     large: '8px',
+//     default: '6px',
+//     small: '4px',
+//   }
+//   return {
+//     marginRight: marginMap[size.value] || marginMap.default,
+//   }
+// })
+// const blockMargin = computed(() => {
+//   const marginMap = {
+//     large: '32px',
+//     default: '28px',
+//     small: '24px',
+//   }
+//   return {
+//     marginTop: marginMap[size.value] || marginMap.default,
+//   }
+// })
 </script>
 
 <style scoped>

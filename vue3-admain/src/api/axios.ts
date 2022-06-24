@@ -2,7 +2,8 @@ import axios from "axios";
 // import { ElMessage } from 'element-plus';
 
 const axiosInstance = axios.create({
-    baseURL:'/api'
+    baseURL:'http://106.52.235.252:8101/'
+    // baseURL:'/api'
 })
 
 axiosInstance.interceptors.response.use(response => {

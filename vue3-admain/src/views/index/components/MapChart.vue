@@ -9,6 +9,7 @@
 import * as echarts from "echarts";
 import { onMounted, ref } from 'vue';
 import axios from 'axios'
+import map from '@/assets/chartJson/map.json'
 import { chinaMap } from '@/assets/map/china'
 
 const main = ref()
@@ -17,9 +18,7 @@ onMounted(() =>{
     init()
 })
 const init = async () => {
-    await axios.get('https://c4156a34-94b2-4302-969f-e96f6277625a.bspapp.com/map').then(res => {
-        data.value = res.data
-    })
+        data.value = map as any
   let mychart = echarts.init(main.value);
   //注册地图组件
   echarts.registerMap('chinaMap',chinaMap as any)

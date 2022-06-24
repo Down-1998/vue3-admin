@@ -6,7 +6,6 @@
     :rules="rules"
     label-width="120px"
     class="demo-ruleForm"
-    :size="formSize"
   >
     <el-form-item label="商品名称" prop="name">
       <el-input v-model="ruleForm.name" />
