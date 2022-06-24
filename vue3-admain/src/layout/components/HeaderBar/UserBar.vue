@@ -29,10 +29,13 @@
 <script setup lang="ts">
 import { useStore } from '@/store'
 import { computed } from 'vue'
+import { authStore } from '@/pinia/authStore';
 
 const store = useStore();
+const useAuthStore = authStore();
 const userInfo = computed(() =>{
-    return store.state.authStore.userInfo
+    // return store.state.authStore.userInfo
+    return useAuthStore.userInfo;
 })
 const handleLogout = () =>{
     localStorage.removeItem('token')

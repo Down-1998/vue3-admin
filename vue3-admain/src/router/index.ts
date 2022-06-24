@@ -5,7 +5,9 @@ import { store } from '@/store'
 import { loginByToken } from '@/api/Auth'
 //导入进度lib
 import NProgress from 'nprogress'; 
-import 'nprogress/nprogress.css'
+import 'nprogress/nprogress.css';
+import { authStore } from '@/pinia/authStore';
+
 
 NProgress.configure({
   //动画方式 
@@ -56,12 +58,15 @@ router.beforeEach((to,from,next) =>{
   }else if(!store.state.authStore.token && token){
     loginByToken(token).then((res:any) =>{
       if(res.data.status){
+        const useAuth = authStore();
         //用户信息
-        store.commit('authStore/addUserInfo',res.data)
+        // store.commit('authStore/addUserInfo',res.data)
+        useAuth.userInfo = res.data
+        useAuth.changePermission(res.data.permissions)
         //权限菜单
-        store.dispatch('menuStore/generateSystemMenus',res.data.permissions)
+        // store.dispatch('menuStore/generateSystemMenus',res.data.permissions)
         //按钮权限
-        store.dispatch('buttonStore/generateButtons',res.data.permissions)
+        // store.dispatch('buttonStore/generateButtons',res.data.permissions)
         if(to.matched.length === 0){
           router.push(to.path)
         }

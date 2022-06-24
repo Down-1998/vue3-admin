@@ -3,15 +3,17 @@ import App from './App.vue'
 import * as ElementUI from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElIcons from '@element-plus/icons'
+import { createPinia } from 'pinia'
 import router from './router'
 import {store,key} from './store'
 import i18n from './i18n'
 
+const pinia = createPinia()
 const app = createApp(App);
 for (const name in ElIcons) {
    app.component(name,(ElIcons as any)[name])
 }
-app.use(router).use(store,key).use(i18n).mount('#app')
+app.use(router).use(store,key).use(pinia).use(i18n).mount('#app')
 
 app.directive('btn',{
    //当元素北挂载到dom时候触发

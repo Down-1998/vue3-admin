@@ -4,7 +4,9 @@ import { useRouter } from 'vue-router'
 import { getCode, login } from "@/api/Auth";
 import { useStore } from "@/store/index";
 import { ElMessage,ElNotification  } from 'element-plus';
+import { authStore } from '@/pinia/authStore';
 
+const useAuthStore = authStore();
 const codeUrl = ref('')
 const router = useRouter();
 const store = useStore();
@@ -61,14 +63,16 @@ const loginRules = reactive({
 })
 
 //登陆提交
-const handleLogin = async () =>{
-  await store.dispatch('authStore/login',loginForm)
+const handleLogin = () =>{
+  //  store.dispatch('authStore/login',loginForm)
+   useAuthStore.login(loginForm)
 }
 //token登陆
 const handleToken = () =>{
   const token = localStorage.getItem('token');
   if(token !== null){
-    store.dispatch('authStore/loginByToken',token)
+    // store.dispatch('authStore/loginByToken',token)
+    useAuthStore.loginByToken(token)
     // router.push({path:'/index'})
   }
 }

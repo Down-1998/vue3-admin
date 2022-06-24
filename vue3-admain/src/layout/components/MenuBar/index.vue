@@ -14,14 +14,17 @@
 import { ref, reactive } from 'vue'
 import { useStore } from '@/store'
 import MenuItem from './MenuItem.vue'
+import { menuStore } from '@/pinia/menuStore';
 
 const store = useStore();
+const useMenuStore = menuStore();
 
 defineProps({
   collapsed: Boolean
 })
 //动态获取菜单
-const menus = store.getters['menuStore/getMenus'];
+// const menus = store.getters['menuStore/getMenus'];
+const menus = useMenuStore.getMenus;
 
 </script>
 

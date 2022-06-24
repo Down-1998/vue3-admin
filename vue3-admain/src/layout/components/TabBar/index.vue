@@ -13,7 +13,7 @@
       :name="item.path"
       :closable='true'
     >
-      {{ item.content }}
+     
     </el-tab-pane>
   </el-tabs>
   <ul v-show="contextMenuVisible" class="operationTabs" :style="{left:left + 'px',top:top + 'px'}">
@@ -30,14 +30,17 @@ import { onMounted ,computed, watch, ref,Ref } from "vue";
 import { Itype} from '../../../store/type'
 import { useRoute, useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus';
+import { tabStore } from '@/pinia/tabStore';
 
+const useTabStore = tabStore();
 const store = useStore();
 const route = useRoute();//路由信息
 const router = useRouter();//路由实例
 
 
 const tabsList = computed(() => {
-    return store.getters['tabStore/getAddTabs']
+    // return store.getters['tabStore/getAddTabs']
+    return useTabStore.getAddTabs
 })
 
 
@@ -51,7 +54,8 @@ const addTab = () =>{
         path,
         title:(meta.title) as string
     }
-    store.commit('tabStore/addTab',tab)
+    // store.commit('tabStore/addTab',tab)
+    useTabStore.addTab(tab)
 
 }
 
@@ -86,7 +90,8 @@ const removeTab = (event:any) => {
             }
         })
     }
-    store.commit('tabStore/removeTab',event)
+    // store.commit('tabStore/removeTab',event)
+    useTabStore.removeTab(event)
 }
 
 //刷新数据缓存
@@ -98,7 +103,8 @@ const refresh = () => {
     if (session) {
         let tabItem = JSON.parse(session)
         tabItem.forEach((tab: Itype) => {
-            store.commit('tabStore/addTab', tab)
+            // store.commit('tabStore/addTab', tab)
+            useTabStore.addTab(tab)
         })
     }
 }
@@ -118,7 +124,8 @@ const top = ref('')
 const openContextMenu = (event:any) =>{
    if(event.srcElement.id){
         let currentTabId = event.srcElement.id.split('-')[1];//拿到路径
-        store.commit('tabStore/saveCurrentTabId',currentTabId);
+        // store.commit('tabStore/saveCurrentTabId',currentTabId);
+        useTabStore.saveCurrentTabId(currentTabId)
         contextMenuVisible.value = true
         left.value = event.clientX;
         top.value = event.clientY + 10
@@ -128,13 +135,15 @@ const openContextMenu = (event:any) =>{
 
 //关闭所有
 const closeAll = () => {
-    store.commit('tabStore/closeAlltabs');
+    // store.commit('tabStore/closeAlltabs');
+    useTabStore.closeAlltabs()
      contextMenuVisible.value = false;
      router.push('/index');
 }
 //关闭其他
 const closeOther = (params:string) =>{
-    store.commit('tabStore/closeOtherTabs',params);
+    // store.commit('tabStore/closeOtherTabs',params);
+    useTabStore.closeOtherTabs(params)
      contextMenuVisible.value = false;
 }
 //监控删除列表,如有点击就会消失
